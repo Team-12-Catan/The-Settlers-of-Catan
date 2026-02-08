@@ -12,25 +12,36 @@ public enum ResourceType {
 	/**
 	 * 
 	 */
-	BRICK,
+	BRICK(0),
 	/**
 	 * 
 	 */
-	ORE,
+	ORE(1),
 	/**
 	 * 
 	 */
-	SHEEP,
+	SHEEP(2),
 	/**
 	 * 
 	 */
-	LUMBER,
+	LUMBER(3),
 	/**
 	 * 
 	 */
-	WHEAT,
+	WHEAT(4),
 	/**
 	 * 
 	 */
-	DESERT;
+	DESERT(5);
+
+	private int index;
+
+	private ResourceType(int index){
+		this.index = index;
+	}
+
+	public int getIndex(){
+		return index;
+	}
+
 }

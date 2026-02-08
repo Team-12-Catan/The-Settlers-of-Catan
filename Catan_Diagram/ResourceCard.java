@@ -13,21 +13,20 @@ public class ResourceCard{
 	 * 
 	 */
 	private ResourceType resourceType;
-	/**
-	 * 
-	 */
-	public ResourceType resourcetype;
 
 	/**
-	 * 
+	 * Constructs a resource card
+	 * @param type The type of resource card to be created
 	 */
-	public void ResourceCard(){
+	public void ResourceCard(ResourceType type){
+		this.resourceType = type;
 	}
 
 	/**
 	 * 
-	 * @return 
+	 * @return resource produced by card
 	 */
 	public String getCardType(){
+		return resourceType.toString();
 	}
 }
