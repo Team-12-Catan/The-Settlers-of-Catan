@@ -4,32 +4,19 @@
 
 package Catan_Diagram;
 
-/************************************************************/
-/**
- * 
- */
 public abstract class Location{
-	/**
-	 * 
-	 */
 	private boolean occupied;
 
-	/**
-	 * 
-	 * @return 
-	 */
+    public Location(){
+        this.occupied = false;
+    }
+
 	public boolean isOccupied(){
+        return occupied;
 	}
 
-	/**
-	 * 
-	 */
 	public void setOccupied(){
+        this.occupied = true;
 	}
 
-	/**
-	 * 
-	 */
-	public void Location(){
-	}
-}
+}//end of Location class

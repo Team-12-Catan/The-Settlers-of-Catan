@@ -4,25 +4,12 @@
 
 package Catan_Diagram;
 
-/************************************************************/
-/**
- * 
- */
 public class Edge extends Location{
-	/**
-	 * 
-	 */
 	private int start;
-	/**
-	 * 
-	 */
 	private int end;
 
-	/**
-	 * 
-	 * @param start 
-	 * @param end 
-	 */
-	public void Edge(int start, int end){
+	public Edge(int start, int end){
+        this.start = start;
+        this.end = end;
 	}
-}
+}//end of Edge

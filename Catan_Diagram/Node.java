@@ -4,20 +4,12 @@
 
 package Catan_Diagram;
 
-/************************************************************/
-/**
- * 
- */
+
 public class Node extends Location{
-	/**
-	 * 
-	 */
+
 	private int id;
 
-	/**
-	 * 
-	 * @param id 
-	 */
-	public void Node(int id){
+	public Node(int id){
+        this.id = id;
 	}
 }
