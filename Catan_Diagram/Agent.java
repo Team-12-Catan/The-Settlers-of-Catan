@@ -12,15 +12,11 @@ public class Agent extends Trader{
 	/**
 	 * 
 	 */
+	private int id;
+	/**
+	 * 
+	 */
 	private int victoryPoints;
-	/**
-	 * 
-	 */
-	private Infrastructure[] buildingsOwned;
-	/**
-	 * 
-	 */
-	private Infrastructure[] roadsOwned;
 	/**
 	 * 
 	 */
@@ -36,36 +32,95 @@ public class Agent extends Trader{
 	/**
 	 * 
 	 */
+	private int infraCount;
+	/**
+	 * 
+	 */
 	public Infrastructure[] infrastructure;
 
 	/**
 	 * 
 	 */
-	public void Agent(){
+	public Agent(int id){
+		this.id = id;
+		this.roadsLeft = 15;
+		this.citiesLeft = 4;
+		this.settlementLeft = 5;
+		this.infraCount = 0;
+		this.victoryPoints = 0;
 	}
 
 	/**
 	 * 
 	 */
-	public void buildRoad(){
+	public void buildRoad(Location location){
+		if (roadsLeft <= 0){
+			throw new IllegalStateException("There are no roads left to build. Sorry!")
+		}
+
+		Road road = new Road(this);
+		road.build(location);
+
+		infrastructure[infraCount++] = road;
+		roadsLeft--;
 	}
 
 	/**
 	 * 
 	 */
-	public void buildCity(){
+	public void buildCity(Location location){
+		if (citiesLeft <= 0){
+			throw new IllegalStateException("There are no cities left to build. Sorry!")
+		}
+
+		City city = new City(this);
+		city.build(location);
+
+		infrastructure[infraCount++] = city;
+		citiesLeft--;
 	}
 
 	/**
 	 * 
 	 */
-	public void buildSettlement(){
+	public void buildSettlement(Location location){
+		if (settlementsLeft <= 0){
+			throw new IllegalStateException("There are no settlements left to build. Sorry!")
+		}
+
+		Settlement settlement = new Settlement(this);
+		settlement.build(location);
+
+		infrastructure[infraCount++] = settlement;
+		settlementsLeft--;
+		this.victoryPoints--; //a settlement gives 1 VP and a city gives 2 VP, but after the settlement is upgraded 
+							  // to a city, it looses the 1 VP from the old settlement. Or we can change this in City class
+		
 	}
 
 	/**
 	 * 
 	 * @return 
 	 */
+	private int calculateVictoryPoints(){
+		int total = 0;
+		for (int i=0; i< infraCount; i++){
+			total += infrastructure[i].getVictoryPoints();
+		}
+
+		this.victoryPoints = total;
+		return victoryPoints;
+	}
+	
+	/**
+	 * 
+	 * @return 
+	 */
 	public int getVictoryPoints(){
+		return calculateVictoryPoints(); //calls the helper method above to get the victoryPoints
+	}
+
+	public int getInfraCount(){
+		return infraCount;
 	}
 }
