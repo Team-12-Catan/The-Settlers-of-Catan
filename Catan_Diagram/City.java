@@ -13,6 +13,23 @@ public class City extends Infrastructure{
 	 * 
 	 * @param owner 
 	 */
-	public void City(Trader owner){
+	public City(Agent owner){
+		super(2, owner); //City gives 2 VP
 	}
+
+	@Override
+    public void build(Location location) {
+		if (location instanceof Edge){
+            throw new IllegalStateException("This is an invalid location for the city.");
+        }
+
+		for (int i=0; i< owner.getInfraCount(); i++){
+			if(owner.infrastructure[i].getLocation() instanceof Node && owner.infrastructure[i] instanceof City){
+            	throw new IllegalStateException("This location is already occupied by another city.");
+        	}	
+		}
+
+        super.setLocation(location);
+        location.setOccupied(); //allowed when there is nothing or a settlement, because settlement upgrades into a city
+    }
 }

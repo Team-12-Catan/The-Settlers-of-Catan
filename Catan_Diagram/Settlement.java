@@ -13,6 +13,21 @@ public class Settlement extends Infrastructure{
 	 * 
 	 * @param owner 
 	 */
-	public void Settlement(Trader owner){
+	public Settlement(Agent owner){
+		super(1, owner); //Settlement gives 1 VP
 	}
+
+	@Override
+    public void build(Location location) {
+        if (location instanceof Edge){
+            throw new IllegalStateException("This is an invalid location for the settlement.");
+        }
+		
+		if(location.isOccupied()){ //occupied by either city or settlement, this move will not be allowed in either cases
+            throw new IllegalStateException("This location is already occupied by another settlement.");
+        }
+
+        super.setLocation(location);
+        location.setOccupied(); //only when there is nothing at that location
+    }
 }

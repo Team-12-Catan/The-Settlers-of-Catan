@@ -13,6 +13,21 @@ public class Road extends Infrastructure{
 	 * 
 	 * @param owner 
 	 */
-	public void Road(Trader owner){
+	public Road(Agent owner){
+		super(0, owner); //Road gives 0 VP
 	}
+
+	@Override
+    public void build(Location location) {
+        if (location instanceof Node){
+            throw new IllegalStateException("This is an invalid location for the road.");
+        }
+		
+		if(location.isOccupied()){
+            throw new IllegalStateException("This location is already occupied by another road.");
+        }
+
+        super.setLocation(location);
+		location.setOccupied(); //only when there is nothing at that location
+    }
 }
