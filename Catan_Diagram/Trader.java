@@ -4,41 +4,51 @@
 
 package Catan_Diagram;
 
-/************************************************************/
-/**
- * 
- */
+import java.util.*;
+
 public abstract class Trader{
-	/**
-	 * 
-	 */
 	private int[] resourceCount;
-	/**
-	 * 
-	 */
-	private Card[] resourceHand;
-	/**
-	 * 
-	 */
-	public Card[] card;
+    private List<Card> resourceHand;
+    //private Card[] resourceHand;
+
+    public Trader(){
+        resourceHand = new ArrayList<>();
+        resourceCount = new int[5];
+        Arrays.fill(resourceCount, 0);
+    }
 
 	/**
 	 * 
-	 */
-	public void Trader(){
-	}
-
-	/**
-	 * 
-	 * @param newCard 
+	 * @param newCard - the card being added to the hand
 	 */
 	public void addCard(Card newCard){
-	}
+        resourceHand.add(newCard);
+        resourceCount[getTypeFromCard(newCard).getIndex()]++;
+	}//end of addCard
 
 	/**
 	 * 
-	 * @return 
+	 * @return c - the card that was removed so it can be traded
 	 */
-	public Card removeCard(){
-	}
-}
+	public Card removeCard(ResourceType type){
+
+        if (type == ResourceType.DESERT) return null;
+
+        for (int i = 0; i < resourceHand.size(); i++) {
+            Card c = resourceHand.get(i);
+            ResourceType resourceType = ResourceType.valueOf(c.getCardType());
+            if (getTypeFromCard(c) == type){
+                resourceHand.remove(i);
+                resourceCount[type.getIndex()]--;
+                return c;
+            }//end of if
+        }//end of for loop
+        return null; //No matching resource card found
+    }//end of removeCard
+
+    private ResourceType getTypeFromCard(Card c){
+        return ResourceType.valueOf(c.getCardType());
+    }
+}//end of Trader
+
+

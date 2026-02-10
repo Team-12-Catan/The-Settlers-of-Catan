@@ -4,14 +4,21 @@
 
 package Catan_Diagram;
 
-/************************************************************/
-/**
- * 
- */
 public class Bank extends Trader{
-	/**
-	 * 
-	 */
-	public void Bank(){
-	}
-}
+	public Bank(){
+        super();
+        //Number of each resource in the Bank
+        int cardsPerResource = 19;
+
+        //Loop through all ResourceTypes except Desert
+        for (ResourceType type : ResourceType.values()){
+            if (type == ResourceType.DESERT) continue;
+
+            for (int i = 0; i < cardsPerResource; i++) {
+                //Create a new card of this type
+                Card newCard = new ResourceCard(type);
+                addCard(newCard); //add to resourceHand
+            }
+        }
+    }//end of Bank constructor
+}//end of Bank

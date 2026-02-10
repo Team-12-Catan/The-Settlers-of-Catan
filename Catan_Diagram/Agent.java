@@ -45,7 +45,7 @@ public class Agent extends Trader{
 		this.id = id;
 		this.roadsLeft = 15;
 		this.citiesLeft = 4;
-		this.settlementLeft = 5;
+		this.settlementsLeft = 5;
 		this.infraCount = 0;
 		this.victoryPoints = 0;
 	}
@@ -55,7 +55,7 @@ public class Agent extends Trader{
 	 */
 	public void buildRoad(Location location){
 		if (roadsLeft <= 0){
-			throw new IllegalStateException("There are no roads left to build. Sorry!")
+			throw new IllegalStateException("There are no roads left to build. Sorry!");
 		}
 
 		Road road = new Road(this);
@@ -70,7 +70,7 @@ public class Agent extends Trader{
 	 */
 	public void buildCity(Location location){
 		if (citiesLeft <= 0){
-			throw new IllegalStateException("There are no cities left to build. Sorry!")
+			throw new IllegalStateException("There are no cities left to build. Sorry!");
 		}
 
 		City city = new City(this);
@@ -85,7 +85,7 @@ public class Agent extends Trader{
 	 */
 	public void buildSettlement(Location location){
 		if (settlementsLeft <= 0){
-			throw new IllegalStateException("There are no settlements left to build. Sorry!")
+			throw new IllegalStateException("There are no settlements left to build. Sorry!");
 		}
 
 		Settlement settlement = new Settlement(this);
