@@ -8,7 +8,7 @@ package Catan_Diagram;
 /**
  * 
  */
-public class ResourceCard{
+public class ResourceCard implements Card{
 	/**
 	 * 
 	 */
