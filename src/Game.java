@@ -103,17 +103,51 @@ public class Game{
     }//end of run()
 
 
-    private void produceResource(int token){
-        HexTile[] result = board.getResourceProdTile(token);
-        for (HexTile currTile : result){
+    //find the hextile that has that corresponding token
+    //from that hextile, get his array of nodes
+    //from that, loop through the node to see if any of the node is occupied
+    //if that node is occupied, then get array from each agent to get their array of infrastructure
+    //from that, check if the node that we currently have (as occupied) matches any of the agent's infrastructure node (whether that is city or node)
+	private void produceResource(int token){
+        HexTile[] producingTiles = board.getResourceProdTile(token); //getting the relevant hextiles
+        
+        for (HexTile currTile : producingTiles){
             if (currTile != null){
-                Location[] nodes = currTile.getNodes();
-                for (Trader agent : agents){
-                    //currentPlayer = agent;
+
+                Location[] tileNodes = currTile.getNodes(); //get nodes of that tile
+                ResourceType resourceType = currtile.getResourceType();
+
+                //Loop over each agent
+                for (Trader agentTrader : agents){
+                    Agent agent = (Agent) agentTrader;
+
+                    //Loop over each infrastructure of the agent
+                    for (int i=0; i < agent.getInfraCount(); i++){
+                        Infrastructure infra = agent.getInfrastructure()[i]; //getting each infrastructure that the agent has currently
+                        
+                        //Check if that infrastructure is on this tile
+                        for (Location node : tileNodes){
+                            if (infra.getLocation() == node){
+                                int amount = (infra instanceof City) ? 2 : 1; //if city, then it produces 2*resource, otherwise it's a settlement which gives 1*resource
+                            }
+                    
+                            //Give the agent the resource
+                            for (int j=0; j<amount; j++){
+                                Card cardFromBank = bank.removeCard(resourceType); //remove the card from the bank
+                                if (cardFromBank != null){ //checking if the bank had at least one card to give to the agent
+                                    agent.addCard(cardFromBank);
+                                } else {
+                                    System.out.println("Bank is out of " + resourceType + " cards!");
+                                }
+                            }
+                            
+                            break; //stop checking for other nodes for this infra
+                        }
+                    }
                 }
             }
         }
-    }
+	}
 
     public boolean build(Scanner scanner){
         int buildChoice;

@@ -56,23 +56,27 @@ public class Board{
 	 * @param token 
 	 * @return 
 	 */
-	public HexTile[] getResourceProdTile(int token){
+	public HexTile[] getResourceProdTile(int token){ //getting the list of hextiles that has that corresponding token number
         HexTile[] producingTiles = {null, null};
         int i = 0;
         for (HexTile currTile: tiles){
             if (currTile.getToken() == token){
-                Location[] tileNodes = currTile.getNodes();
+				producingTiles[i] = currTile;
+				i++;
+                //Location[] tileNodes = currTile.getNodes();
 
-                for (Location node : tileNodes){
+                /*for (Location node : tileNodes){
                     if (node.isOccupied()){ //true
                         producingTiles[i] = currTile;
                         i++;
                     }
-                }
+                }*/
             }
         }
         return producingTiles;
 	}
+}
+
 
     public Node getIDNode(int id){//CH
         for (Location location : nodes) {
