@@ -60,8 +60,10 @@ public class Game{
                 currentPlayer = agent;
                 int rollSum = dice.roll();
 
+                /* Production Step */
                 if (rollSum != 7) produceResource(rollSum);
 
+                /* Building Step */
                 int buildChoice;
                 do{
                     System.out.println("0 = Build ROAD");
@@ -71,6 +73,8 @@ public class Game{
                     System.out.print("Choice: ");
 
                     buildChoice = s.nextInt();
+
+                    System.out.print("Where would you like to build: ");
 
                     if (buildChoice >= 0 && buildChoice <= 2){
                         if (build(buildChoice)) System.out.println("Built was successful!");
@@ -105,7 +109,15 @@ public class Game{
 
 
 	private void produceResource(int token){
-//        HexTile[] result = board.getResourceProdTile(token);
+        HexTile[] result = board.getResourceProdTile(token);
+        for (HexTile currTile : result){
+            if (currTile != null){
+                Location[] nodes = currTile.getNodes();
+                for (Trader agent : agents){
+                    //currentPlayer = agent;
+                }
+            }
+        }
 	}
 
 

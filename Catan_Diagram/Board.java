@@ -57,5 +57,20 @@ public class Board{
 	 * @return 
 	 */
 	public HexTile[] getResourceProdTile(int token){
+        HexTile[] producingTiles = {null, null};
+        int i = 0;
+        for (HexTile currTile: tiles){
+            if (currTile.getToken() == token){
+                Location[] tileNodes = currTile.getNodes();
+
+                for (Location node : tileNodes){
+                    if (node.isOccupied()){ //true
+                        producingTiles[i] = currTile;
+                        i++;
+                    }
+                }
+            }
+        }
+        return producingTiles;
 	}
 }
