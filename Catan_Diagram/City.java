@@ -24,7 +24,8 @@ public class City extends Infrastructure{
         }
 
 		for (int i=0; i< owner.getInfraCount(); i++){
-			if(owner.infrastructure[i].getLocation() instanceof Node && owner.infrastructure[i] instanceof City){
+			Infrastructure infra = getOwner().getInfrastructure()[i]; //local variable to prevent duplication
+			if(infra.getLocation() instanceof Node && infra instanceof City){
             	throw new IllegalStateException("This location is already occupied by another city.");
         	}	
 		}

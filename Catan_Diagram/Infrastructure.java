@@ -51,7 +51,7 @@ public abstract class Infrastructure{
 	 * 
 	 * @return owner
 	 */
-	public int getOwner(){
+	public Agent getOwner(){
 		return owner;
 	}
 
