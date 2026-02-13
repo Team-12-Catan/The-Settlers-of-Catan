@@ -129,20 +129,20 @@ public class Game{
                         for (Location node : tileNodes){
                             if (infra.getLocation() == node){
                                 int amount = (infra instanceof City) ? 2 : 1; //if city, then it produces 2*resource, otherwise it's a settlement which gives 1*resource
-                            }
-
-                            //Give the agent the resource
-                            for (int j=0; j<amount; j++){
-                                Card cardFromBank = bank.removeCard(resourceType); //remove the card from the bank
-                                if (cardFromBank != null){ //checking if the bank had at least one card to give to the agent
-                                    agent.addCard(cardFromBank);
-                                    System.out.println("Player " + agent.getId() + " gets " + resourceType + ".");
-                                } else {
-                                    System.out.println("Bank is out of " + resourceType + " cards!");
+                        
+                                //Give the agent the resource
+                                for (int j=0; j<amount; j++){
+                                    Card cardFromBank = bank.removeCard(resourceType); //remove the card from the bank
+                                    if (cardFromBank != null){ //checking if the bank had at least one card to give to the agent
+                                        agent.addCard(cardFromBank);
+                                        System.out.println("Player " + agent.getId() + " gets " + resourceType + ".");
+                                    } else {
+                                        System.out.println("Bank is out of " + resourceType + " cards!");
+                                    }
                                 }
-                            }
 
-                            break; //stop checking for other nodes for this infra
+                                break; //stop checking for other nodes for this infra
+                            }
                         }
                     }
                 }
