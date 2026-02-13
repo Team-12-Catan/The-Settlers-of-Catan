@@ -1,4 +1,4 @@
-package Catan_Diagram;
+package src;
 
 /**
  * Date: February 9th, 2026

@@ -1,4 +1,4 @@
-package Catan_Diagram;
+package src;
 
 public class MapSkeleton {
     public static final int nodeCount = 54;

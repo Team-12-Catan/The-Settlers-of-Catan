@@ -36,7 +36,7 @@ public class Agent extends Trader{
 	/**
 	 * 
 	 */
-	private Infrastructure[] infrastructure;
+	public Infrastructure[] infrastructure;
 
 	/**
 	 * 
@@ -48,6 +48,7 @@ public class Agent extends Trader{
 		this.settlementsLeft = 5;
 		this.infraCount = 0;
 		this.victoryPoints = 0;
+        this.infrastructure = new Infrastructure[24];
 	}
 
 	/**
@@ -124,11 +125,12 @@ public class Agent extends Trader{
 		return infraCount;
 	}
 
-	public int getId(){
-		return id;
-	}
+    public int getId(){ //CH - new method
+        return id;
+    }
 
-	public Infrastructure[] getInfrastructure(){
-		return infrastructure;
-	}
+    public Infrastructure[] getInfrastructure(){//CH
+        return infrastructure;
+    }
+
 }

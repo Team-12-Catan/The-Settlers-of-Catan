@@ -73,4 +73,24 @@ public class Board{
         }
         return producingTiles;
 	}
+
+    public Node getIDNode(int id){//CH
+        for (Location location : nodes) {
+            Node n = (Node) location;
+            if (n.getId() == id) {  //assuming Node has getId()
+                return n;
+            }
+        }
+        return null; // not found
+    }
+
+    public Edge getEdgeByIDNodes(int a, int b){//CH
+        for (Location location : edges){
+            Edge e = (Edge) location; //type casting as Edge
+            if ((e.getStart() == a && e.getEnd() == b) || (e.getStart() == b && e.getEnd() == a)){
+                return e;
+            }
+        }
+        return null;
+    }
 }

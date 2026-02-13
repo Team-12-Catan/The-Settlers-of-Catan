@@ -1,4 +1,4 @@
-package Catan_Diagram;
+package src;
 
 public class MapLayout {
     public static final int [] tokens = {0, 4, 3, 11, 6, 4, 3, 11, 6, 5, 8, 9, 12, 10, 2, 9, 10, 8, 5};
