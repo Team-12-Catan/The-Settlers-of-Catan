@@ -148,7 +148,7 @@ public class Game{
                                     if (cardFromBank != null){ //checking if the bank had at least one card to give to the agent
                                         agent.addCard(cardFromBank);
                                         //System.out.println("Player " + agent.getId() + " gets " + resourceType + ".");
-                                        //System.out.println(currentRound + " / " + agent.getId() + ": Receives " + resourceType + ".");
+                                        System.out.println(currentRound + " / " + agent.getId() + ": Receives " + resourceType);
                                     } else {
                                         System.out.println(currentRound + " / " + agent.getId() + ": Bank is out of " + resourceType + " cards");
                                         //System.out.println("Bank is out of " + resourceType + " cards!");
@@ -465,10 +465,10 @@ public class Game{
     }//end of canBuildCity()
 
 
-    private giveResourceInitialSetup(Node node, Trader currentPlayer){
-        (Agent) player = currentPlayer;
+    private void giveResourceInitialSetup(Node node, Trader currentPlayer){
+        Agent player = (Agent) currentPlayer;
         
-        for (Hextile tile : board.getTiles()){
+        for (HexTile tile : board.getTiles()){
             Location[] tileNodes = tile.getNodes();
 
             for (Location tileNode : tileNodes){
@@ -478,6 +478,7 @@ public class Game{
                         Card card = bank.removeCard(type);
 
                         if(card != null){
+                            System.out.println(currentRound + " / " + player.getId() + ": Receives " + type);
                             player.addCard(card);
                         }
                     }

@@ -1,47 +1,41 @@
 package src;
-//public class Demonstrator {
-//    static void main(String[] args){
-//        Game gameOne = new Game(8192, 4);
-//        gameOne.run();
-//    }
-//}
 
-/**
- * Demonstrator class for the Game Simulator.
- * This class serves as the entry point to showcase the game logic,
- * including initial setup, resource production, and building mechanics.
- */
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Demonstrator {
 
     public static void main(String[] args) {
-        // --- 1. Initialization Phase ---
-        // We create a simulation with a set number of rounds and players.
-        // The Game constructor handles the creation of the Board, Bank, and Agents.
-        int rounds = 10;
-        int players = 3;
+        // Game configuration
+        //int rounds = 10;
+        int maxRounds;
+        int numPlayers = 4;
 
-        System.out.println("DEBUG: Starting Simulation with " + players + " players.");
-        Game simulation = new Game(rounds, players);
-
-        /* * --- 2. Execution Phase ---
-         * The run() method triggers the core game loop:
-         * a) initialSetup(): Demonstrates player placement of settlements and roads.
-         * b) turnLoop(): Iterates through rounds, handling:
-         * - Dice rolling (MultiDice class)
-         * - Resource production (produceResource method)
-         * - Player actions (build method)
-         * - Victory condition checks (10 Victory Points)
-         */
+        // Create the game
+        Game game;
+        System.out.println("↳ Starting Simulation\n");
+        // Read user inputs from a file instead of typing
         try {
-            System.out.println("LOG: Entering Game Loop...");
-            simulation.run();
-        } catch (Exception e) {
-            // Error handling to ensure the simulator provides feedback if logic fails
-            System.out.println("CRITICAL: Simulation interrupted.");
-            e.printStackTrace();
+            Scanner fileScanner = new Scanner(new File("demo_input.txt"));
+
+            //Read the first line to get the max rounds
+            String line = fileScanner.nextLine().trim();
+
+            //Split at ':' to get the number
+            String[] parts = line.split(":");
+            maxRounds = (Integer.parseInt(parts[1].trim()))/numPlayers;
+            game = new Game(maxRounds, numPlayers);
+
+            //pass this file scanner to the game run method
+            game.run(fileScanner);
+
+            fileScanner.close(); //prevents leaks
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Exception: " + e);
         }
 
-        // --- 3. Termination Phase ---
-        System.out.println("LOG: Simulation complete. Check console output for winner details.");
+        System.out.println("↳ Simulation Completed");
     }
 }
