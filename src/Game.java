@@ -353,11 +353,36 @@ public class Game{
             //Connected to player's road
             if (loc instanceof Edge) {
                 Edge e = (Edge) loc;
-                if (e.getStart() == a || e.getStart() == b || e.getEnd() == a   || e.getEnd() == b) return true;
+                boolean isConnected = (e.getStart() == a || e.getStart() == b || e.getEnd() == a   || e.getEnd() == b);
+                if (isConnected){
+                    //finds the shared node ID
+                    int sharedNode;
+                    if (e.getStart() == a || e.getEnd() == a) sharedNode = a;
+                    else sharedNode = b;
+
+                    //If shared node is occupied by ANOTHER player - build should fail
+                    for (Trader players : agents){
+                        Agent enemyPlayer = (Agent) players;
+                        if (enemyPlayer == player) continue; //no need to check if the node is the currplayer's or not
+
+                        for (int j = 0; j < enemyPlayer.getInfraCount(); j++){
+                            Infrastructure otherInfra = enemyPlayer.getInfrastructure()[j];
+
+                            if (otherInfra instanceof Settlement || otherInfra instanceof City){
+                                Node otherNode = (Node) otherInfra.getLocation();
+                                if (otherNode.getId() == sharedNode){
+                                    return false; //build has been blocked by enemy building
+                                }
+                            }
+                        }//end of for loop
+                    }
+                    return true;
+                }
             }
         }//end of for loop (checking player's infrastructures)
         return false;
     }//end of canBuildRoad
+
     private boolean canBuildSettlement(Node node){ //Ch
         Agent player = (Agent) currentPlayer;
         if (node.isOccupied()) return false;
@@ -382,16 +407,6 @@ public class Game{
 
         if (!connectedToRoad) return false;
 
-        //no adjacent occupied nodes - you cannot place something on a node if any directly (share an edge) connected node is occupied
-//        for (int[] e : MapSkeleton.edges) { //checking each edge (start and end nodes)
-//            if (e[0] == nodeId || e[1] == nodeId){//finding either ends of an edge that touch the node with thisID
-//                int neighborId;
-//                if (e[0] == nodeId) neighborId = e[1]; //finding which exact end the edge touches the node and setting the other one as the neighborId
-//                else neighborId = e[0];
-//                Node neighbor = board.getIDNode(neighborId); //get the Node with this ID - this is the adjacent Node
-//                if (neighbor.isOccupied()) return false;
-//            }
-//        }
         if (!noAdjacentSettlements(node)) return false;
 
         return true;

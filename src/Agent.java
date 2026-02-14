@@ -36,7 +36,7 @@ public class Agent extends Trader{
 	/**
 	 * 
 	 */
-	public Infrastructure[] infrastructure;
+	private Infrastructure[] infrastructure;
 
 	/**
 	 * 
