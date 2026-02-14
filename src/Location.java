@@ -4,6 +4,10 @@
 
 package src;
 
+/**
+ * A class to define the attributes and behaviours of a location that can be built by a player.
+ */
+
 public abstract class Location{
 	private boolean occupied;
 

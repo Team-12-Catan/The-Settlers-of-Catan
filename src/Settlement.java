@@ -6,13 +6,9 @@ package src;
 
 /************************************************************/
 /**
- * 
+ * A type of infrastructure, build on nodes.
  */
 public class Settlement extends Infrastructure{
-	/**
-	 * 
-	 * @param owner 
-	 */
 	public Settlement(Agent owner){
 		super(1, owner); //Settlement gives 1 VP
 	}

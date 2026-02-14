@@ -6,32 +6,14 @@ package src;
 
 /************************************************************/
 /**
- * 
+ * An enumeration of the resource types possible
  */
 public enum ResourceType {
-	/**
-	 * 
-	 */
 	BRICK(0),
-	/**
-	 * 
-	 */
 	ORE(1),
-	/**
-	 * 
-	 */
 	WOOL(2),
-	/**
-	 * 
-	 */
 	LUMBER(3),
-	/**
-	 * 
-	 */
 	GRAIN(4),
-	/**
-	 * 
-	 */
 	DESERT(5);
 
 	private int index;

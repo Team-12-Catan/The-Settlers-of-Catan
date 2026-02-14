@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * A demonstrator class to showcase the functionality of the catan simulation
+ */
 public class Demonstrator {
 
     public static void main(String[] args) {
         // Game configuration
-        //int rounds = 10;
         int maxRounds;
         int numPlayers = 4;
 

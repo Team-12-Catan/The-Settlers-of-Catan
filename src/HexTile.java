@@ -3,19 +3,17 @@
 // --------------------------------------------------------
 
 package src;
+
+/**
+ * Class representing a tile on the game board.
+ */
 public class HexTile{
 
     private ResourceType resourcetype;
-
     private int landTileID;
-
     private int token;
-
     private Location[] nodes;
-
     private Location[] edges;
-
-    public Location[] location; //
 
     /**
      *
@@ -37,42 +35,22 @@ public class HexTile{
         }
     }//end of HexTile Constructor
 
-    /**
-     *
-     * @return
-     */
     public Location[] getNodes(){
         return nodes;
     }
 
-    /**
-     *
-     * @return
-     */
     public Location[] getEdges(){
         return edges;
     }
 
-    /**
-     *
-     * @return
-     */
     public ResourceType getResourceType(){
         return resourcetype;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getlandTileID(){
         return landTileID;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getToken(){
         return token;
     }

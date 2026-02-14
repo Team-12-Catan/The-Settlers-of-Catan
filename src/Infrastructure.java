@@ -6,67 +6,31 @@ package src;
 
 /************************************************************/
 /**
- *
+ * A class to define a template for roads, settlements, and cities
  */
 public abstract class Infrastructure{
-    /**
-     *
-     */
     private int victoryPoints;
-    /**
-     *
-     */
     private Agent owner;
-    /**
-     *
-     */
     private Location location;
 
-
-    /**
-     *
-     * @param victoryPoints
-     * @param owner
-     */
     public Infrastructure(int victoryPoints, Agent owner){
         this.victoryPoints = victoryPoints;
         this.owner = owner;
     }
 
-    /**
-     *
-     * @param location
-     */
     public abstract void build(Location location);
-
-    /**
-     *
-     * @return victoryPoints
-     */
     public int getVictoryPoints(){
         return victoryPoints;
     }
 
-    /**
-     *
-     * @return owner
-     */
     public Agent getOwner(){
         return owner;
     }
 
-    /**
-     *
-     * @param location
-     */
     public void setLocation(Location location){
         this.location = location;
     }
 
-    /**
-     *
-     * @return location
-     */
     public Location getLocation(){
         return location;
     }

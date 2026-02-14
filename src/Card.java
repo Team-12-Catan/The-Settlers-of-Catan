@@ -9,9 +9,5 @@ package src;
  * An interface to define the behaviour of a card in the game. All cards must be able to return their type. 
  */
 public interface Card{
-	/**
-	 * 
-	 * @return 
-	 */
 	public String getCardType();
 }

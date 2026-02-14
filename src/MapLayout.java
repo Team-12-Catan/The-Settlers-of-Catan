@@ -1,5 +1,8 @@
 package src;
 
+/**
+ * A configuration file to choose the layout of the game map, and what tokens to place on each tile.
+ */
 public class MapLayout {
     public static final int [] tokens = {10, 11, 8, 3, 11, 5, 12, 3, 6, 4, 6, 9, 5, 9, 8, 4, 7, 2, 10};
     public static final ResourceType [] tileResource = {

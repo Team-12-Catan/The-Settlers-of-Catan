@@ -6,12 +6,9 @@ package src;
 
 /************************************************************/
 /**
- * 
+ * A type of card that has a resource.
  */
 public class ResourceCard implements Card{
-	/**
-	 * 
-	 */
 	private ResourceType resourceType;
 
 	/**
