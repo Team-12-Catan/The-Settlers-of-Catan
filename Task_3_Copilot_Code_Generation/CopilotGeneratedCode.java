@@ -1,4 +1,4 @@
-/**
+package Task_3_Copilot_Code_Generation; /**
  * Task 3 - Code Generated from Copilot
  * Promped used: Load your model into your favourite Gen AI tool as an image (e.g., png) or as semi-structured data (e.g., XML) 
  * and ask it to generate program code for you. Please do that.
